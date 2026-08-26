@@ -10,7 +10,6 @@ import {
   ChevronDown,
   Cloud,
   Download,
-  Github,
   Menu,
   ShieldCheck,
   Smartphone,
@@ -97,7 +96,6 @@ export default function Home() {
             <a href="#guide" onClick={() => setMenuOpen(false)}>دليل الاستخدام</a>
             <a href="#faq" onClick={() => setMenuOpen(false)}>الأسئلة الشائعة</a>
           </nav>
-          <a className="github-link" href="https://github.com/eng-saqr-nabil" target="_blank" rel="noreferrer"><Github size={17} /> <span>GitHub</span></a>
         </div>
       </header>
 
@@ -171,7 +169,7 @@ export default function Home() {
         <section className="faq-section" id="faq"><div className="faq-heading"><SectionLabel>الأسئلة الشائعة</SectionLabel><h2>هل لديك سؤال<br /><span>في بالك؟</span></h2><p>معلومات واضحة قبل التحميل، على أن تُحدّث تفاصيل الإصدار فور إطلاقه.</p></div><div className="faq-list">{faqs.map((item, index) => <div className={openFaq === index ? "faq-item active" : "faq-item"} key={item.q}><button onClick={() => setOpenFaq(openFaq === index ? null : index)} aria-expanded={openFaq === index}><span>{item.q}</span><ChevronDown size={19} /></button>{openFaq === index && <p>{item.a}</p>}</div>)}</div></section>
       </main>
 
-      <footer className="footer" id="contact"><div className="footer-top"><a className="brand" href="#top"><img className="brand-logo" src={productAssets.icon} alt="شعار دفتر الامتياز" /><span className="brand-copy"><strong>دفتر الامتياز</strong><small>إدارة مالية وتشغيلية متكاملة</small></span></a><p>صفحة رسمية قيد التجهيز للإصدار الأول من التطبيق.</p><div className="footer-links"><a href="https://github.com/eng-saqr-nabil" target="_blank" rel="noreferrer"><Github size={17} /> GitHub</a></div></div><div className="footer-bottom"><span>© 2026 دفتر الامتياز. جميع الحقوق محفوظة.</span><span>صمّم بواجهة عربية تراعي الاستخدام اليومي.</span></div></footer>
+      <footer className="footer" id="contact"><div className="footer-top"><a className="brand" href="#top"><img className="brand-logo" src={productAssets.icon} alt="شعار دفتر الامتياز" /><span className="brand-copy"><strong>دفتر الامتياز</strong><small>إدارة مالية وتشغيلية متكاملة</small></span></a><p>صفحة رسمية مخصصة للتعريف بالتطبيق وتنزيل الإصدار المعتمد عند توفره.</p></div><div className="footer-bottom"><span>© 2026 دفتر الامتياز. جميع الحقوق محفوظة.</span><span>واجهة عربية مخصصة للاستخدام اليومي.</span></div></footer>
     </div>
   );
 }
