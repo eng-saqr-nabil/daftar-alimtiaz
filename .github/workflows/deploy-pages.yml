@@ -37,6 +37,8 @@ jobs:
           VITE_BASE_PATH: /daftar-alimtiaz/
       - name: إعداد GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - name: رفع ملفات الموقع
         uses: actions/upload-pages-artifact@v3
         with:
