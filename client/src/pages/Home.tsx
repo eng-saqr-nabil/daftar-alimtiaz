@@ -106,6 +106,14 @@ export default function Home() {
           <div className="hero-texture" aria-hidden="true" />
           <div className="hero-inner">
             <div className="hero-copy">
+              <div className="mobile-store-heading" aria-label="ملخص تطبيق دفتر الامتياز">
+                <img src={productAssets.icon} alt="أيقونة تطبيق دفتر الامتياز" />
+                <div>
+                  <strong>دفتر الامتياز</strong>
+                  <span>إدارة مالية وتشغيلية متكاملة</span>
+                  <small>Android · الإصدار قيد التجهيز</small>
+                </div>
+              </div>
               <div className="release-pill"><span className="pulse-dot" /> الإصدار الأول قيد التجهيز <b>APK</b></div>
               <h1>دفتر <em>الامتياز</em></h1>
               <p className="hero-subtitle">إدارة مالية وتشغيلية متكاملة</p>
