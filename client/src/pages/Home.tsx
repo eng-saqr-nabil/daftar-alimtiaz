@@ -19,13 +19,24 @@ import {
   X,
 } from "lucide-react";
 
+const GITHUB_ASSET_BASE = "https://github.com/eng-saqr-nabil/daftar-alimtiaz/releases/download/site-assets";
+const MANUS_ASSET_BASE = "/manus-storage";
+const productAssetUrl = (productionName: string, previewName: string) =>
+  import.meta.env.DEV ? `${MANUS_ASSET_BASE}/${previewName}` : `${GITHUB_ASSET_BASE}/${productionName}`;
+
 const productAssets = {
-  logo: "/manus-storage/app-logo_1023511e.png",
-  icon: "/manus-storage/app-icon_292093af.png",
-  signIn: "/manus-storage/sign-in_80fc7c0f.webp",
-  about: "/manus-storage/about-app_5e0c33f1.webp",
-  summary: "/manus-storage/today-summary_d9e0378b.webp",
-  settings: "/manus-storage/settings_d2f48cca.webp",
+  logo: productAssetUrl("app-logo.png", "app-logo_1023511e.png"),
+  icon: productAssetUrl("app-icon.png", "app-icon_292093af.png"),
+  signIn: productAssetUrl("sign-in.webp", "sign-in_80fc7c0f.webp"),
+  about: productAssetUrl("about-app.webp", "about-app_5e0c33f1.webp"),
+  summary: productAssetUrl("today-summary.webp", "today-summary_d9e0378b.webp"),
+  customers: productAssetUrl("customers.webp", "customers_0965e0a8.webp"),
+  suppliers: productAssetUrl("suppliers.webp", "suppliers_ec60df39.webp"),
+  statement: productAssetUrl("customer-statement.webp", "customer-statement_73f146df.webp"),
+  backup: productAssetUrl("cloud-backup.webp", "cloud-backup_9b9828c1.webp"),
+  settings: productAssetUrl("settings.webp", "settings_d2f48cca.webp"),
+  storeProfile: productAssetUrl("store-profile.webp", "store-profile_f6f7544e.webp"),
+  profile: productAssetUrl("settings-profile.webp", "settings-profile_323c6b0d.webp"),
 };
 
 const features = [
@@ -33,20 +44,26 @@ const features = [
   { icon: WalletCards, title: "الصندوق والمصروفات", body: "سجّل العمليات اليومية واطّلع على ملخص الحركة في مكان واحد." },
   { icon: BadgeCheck, title: "كشف الحساب", body: "اعرض الحركات والمدفوعات بطريقة تساعدك على مراجعة الحسابات." },
   { icon: Cloud, title: "نسخ احتياطي واستعادة", body: "أنشئ نسخة لبياناتك أو استعد آخر نسخة محفوظة عندما تحتاج إليها." },
-  { icon: BellRing, title: "إعدادات مرنة", body: "تحكّم بالمظهر والعملة والتنبيهات بما يناسب طريقة عملك." },
+  { icon: BellRing, title: "إعدادات وملف المتجر", body: "راجع الإعدادات ومعلومات الحساب والمتجر من واجهات التطبيق المخصصة." },
   { icon: Smartphone, title: "تجربة عربية للهاتف", body: "تصميم عملي يدعم العربية ويجعل الوصول للأدوات اليومية مباشراً." },
 ];
 
 const screens = [
-  { src: productAssets.signIn, title: "تسجيل الدخول", caption: "بدء منظّم عبر خيارات الدخول المتاحة." },
+  { src: productAssets.customers, title: "العملاء", caption: "عرض بيانات العملاء والقوائم المتاحة داخل التطبيق." },
+  { src: productAssets.suppliers, title: "الموردون", caption: "واجهة مخصصة لمتابعة الموردين." },
+  { src: productAssets.statement, title: "كشف الحساب", caption: "عرض منظم للحركة المالية الخاصة بالعميل." },
   { src: productAssets.summary, title: "ملخص اليوم", caption: "نظرة سريعة على عمليات اليوم وإدارة المصروفات." },
-  { src: productAssets.settings, title: "الإعدادات العامة", caption: "المظهر والعملة والتنبيهات من مكان واحد." },
+  { src: productAssets.backup, title: "النسخ الاحتياطي", caption: "خيارات إنشاء نسخة بيانات أو استعادتها." },
+  { src: productAssets.settings, title: "الإعدادات", caption: "ضبط إعدادات التطبيق من شاشة مستقلة." },
+  { src: productAssets.storeProfile, title: "ملف المتجر", caption: "واجهة لمعلومات المتجر وبياناته." },
+  { src: productAssets.profile, title: "ملف الحساب", caption: "مراجعة المعلومات الظاهرة في ملف الحساب." },
+  { src: productAssets.signIn, title: "تسجيل الدخول", caption: "بدء منظم عبر واجهة الدخول." },
   { src: productAssets.about, title: "عن التطبيق", caption: "تعريف مختصر بالتطبيق ووسائل التواصل." },
 ];
 
 const faqs = [
   { q: "لمن صُمم تطبيق دفتر الامتياز؟", a: "لمن يريد تنظيم العمل اليومي في مكان واحد، من متابعة العملاء والموردين إلى الصندوق والمصروفات وكشف الحساب." },
-  { q: "هل يمكن استخدام التطبيق دون اتصال؟", a: "تظهر واجهات التطبيق حفظ العمليات محلياً، مع وجود خيارات للنسخ الاحتياطي والاستعادة من داخل التطبيق." },
+  { q: "هل تتوفر نسخة احتياطية للبيانات؟", a: "تظهر في التطبيق واجهة خاصة لإنشاء نسخة احتياطية أو استعادة نسخة محفوظة. وتُنشر التفاصيل الرسمية مع الإصدار." },
   { q: "متى سيتاح ملف التحميل؟", a: "سيُفعّل زر التحميل ورمز QR بعد رفع ملف APK الرسمي إلى صفحة الإصدار، حتى يصل المستخدم دائماً إلى النسخة الصحيحة." },
 ];
 
@@ -107,7 +124,7 @@ export default function Home() {
             <div><span className="strip-icon">◌</span><strong>عملاء وديون</strong><small>متابعة أوضح للأرصدة</small></div>
             <div><span className="strip-icon">◷</span><strong>صندوق ومصروفات</strong><small>تسجيل العمليات اليومية</small></div>
             <div><span className="strip-icon">◈</span><strong>نسخ احتياطي</strong><small>حفظ واستعادة البيانات</small></div>
-            <div><span className="strip-icon">⌁</span><strong>إعدادات مرنة</strong><small>مظهر وعملة وتنبيهات</small></div>
+            <div><span className="strip-icon">⌁</span><strong>إعدادات مرنة</strong><small>إعدادات وملف متجر منظم</small></div>
           </div>
         </section>
 
