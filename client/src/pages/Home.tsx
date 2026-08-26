@@ -21,6 +21,8 @@ import {
 
 const GITHUB_ASSET_BASE = "https://github.com/eng-saqr-nabil/daftar-alimtiaz/releases/download/site-assets";
 const MANUS_ASSET_BASE = "/manus-storage";
+const OFFICIAL_SITE_URL = "https://eng-saqr-nabil.github.io/daftar-alimtiaz/";
+const APK_DOWNLOAD_URL: string | null = null;
 const productAssetUrl = (productionName: string, previewName: string) =>
   import.meta.env.DEV ? `${MANUS_ASSET_BASE}/${previewName}` : `${GITHUB_ASSET_BASE}/${productionName}`;
 
@@ -37,6 +39,7 @@ const productAssets = {
   settings: productAssetUrl("settings.webp", "settings_d2f48cca.webp"),
   storeProfile: productAssetUrl("store-profile.webp", "store-profile_f6f7544e.webp"),
   profile: productAssetUrl("settings-profile.webp", "settings-profile_323c6b0d.webp"),
+  qr: `${GITHUB_ASSET_BASE}/official-site-qr.png`,
 };
 
 const features = [
@@ -64,7 +67,7 @@ const screens = [
 const faqs = [
   { q: "لمن صُمم تطبيق دفتر الامتياز؟", a: "لمن يريد تنظيم العمل اليومي في مكان واحد، من متابعة العملاء والموردين إلى الصندوق والمصروفات وكشف الحساب." },
   { q: "هل تتوفر نسخة احتياطية للبيانات؟", a: "تظهر في التطبيق واجهة خاصة لإنشاء نسخة احتياطية أو استعادة نسخة محفوظة. وتُنشر التفاصيل الرسمية مع الإصدار." },
-  { q: "متى سيتاح ملف التحميل؟", a: "سيُفعّل زر التحميل ورمز QR بعد رفع ملف APK الرسمي إلى صفحة الإصدار، حتى يصل المستخدم دائماً إلى النسخة الصحيحة." },
+  { q: "متى سيتاح ملف التحميل؟", a: "سيُفعّل زر التحميل بعد رفع ملف APK الرسمي إلى صفحة الإصدار، حتى يصل المستخدم دائماً إلى النسخة الصحيحة. أمّا رمز QR فيفتح الموقع الرسمي." },
 ];
 
 function SectionLabel({ children }: { children: string }) {
@@ -108,7 +111,7 @@ export default function Home() {
               <p className="hero-subtitle">إدارة مالية وتشغيلية متكاملة</p>
               <p className="hero-description">نظّم العملاء والموردين والمصروفات والصندوق، وتابع الحركات اليومية والتقارير من واجهة عربية واضحة مصممة للهاتف.</p>
               <div className="hero-actions">
-                <a className="primary-button" href="#download"><Download size={20} /> تنزيل التطبيق عند الإتاحة <ArrowLeft size={17} /></a>
+                {APK_DOWNLOAD_URL ? <a className="primary-button" href={APK_DOWNLOAD_URL}><Download size={20} /> تنزيل التطبيق <ArrowLeft size={17} /></a> : <a className="primary-button" href="#download"><Download size={20} /> تنزيل التطبيق عند الإتاحة <ArrowLeft size={17} /></a>}
                 <a className="quiet-button" href="#screens">شاهد التطبيق من الداخل</a>
               </div>
               <div className="hero-trust"><ShieldCheck size={18} /><span>نسخ احتياطي واستعادة من داخل التطبيق</span></div>
@@ -149,8 +152,8 @@ export default function Home() {
 
         <section className="download-section" id="download">
           <div className="download-card">
-            <div className="download-copy"><SectionLabel>تحميل التطبيق</SectionLabel><h2>الإصدار الرسمي<br /><span>قريباً.</span></h2><p>سيظهر رابط ملف APK الرسمي هنا فور اعتماده. سنربط رمز QR بصفحة الموقع الرسمية، لتبقى طريق الوصول إلى أحدث إصدار ثابتة وآمنة.</p><div className="download-meta"><span>Android APK</span><span>تحديث عبر صفحة الإصدار</span><span>الرابط قيد الإضافة</span></div><button className="primary-button disabled-button" disabled><Download size={19} /> انتظار الإصدار الرسمي</button></div>
-            <div className="qr-panel"><div className="qr-placeholder" aria-label="رمز QR سيُنشأ بعد اعتماد عنوان الموقع الرسمي"><div className="qr-corner tl" /><div className="qr-corner tr" /><div className="qr-corner bl" /><div className="qr-noise">···<br />· ·<br />···</div></div><p>سيشير الرمز إلى<br />صفحة الموقع الرسمية</p></div>
+            <div className="download-copy"><SectionLabel>تحميل التطبيق</SectionLabel><h2>الإصدار الرسمي<br /><span>قريباً.</span></h2><p>سيظهر رابط ملف APK الرسمي هنا فور اعتماده. رمز QR أدناه يشير إلى صفحة الموقع الرسمية، لتبقى طريق الوصول إلى أحدث إصدار ثابتة وآمنة.</p><div className="download-meta"><span>Android APK</span><span>تحديث عبر صفحة الإصدار</span><span>الرابط قيد الإضافة</span></div>{APK_DOWNLOAD_URL ? <a className="primary-button" href={APK_DOWNLOAD_URL}><Download size={19} /> تنزيل APK الرسمي</a> : <button className="primary-button disabled-button" disabled><Download size={19} /> انتظار الإصدار الرسمي</button>}</div>
+            <a className="qr-panel" href={OFFICIAL_SITE_URL} aria-label="فتح الموقع الرسمي لدفتر الامتياز"><img className="qr-code" src={productAssets.qr} alt="رمز QR لفتح الموقع الرسمي لدفتر الامتياز" width="480" height="480" /><p>امسح الرمز لفتح<br />صفحة الموقع الرسمية</p></a>
           </div>
           <div className="release-ledger" aria-label="معلومات الإصدار الرسمية"><span><b>النظام</b><em>Android APK</em></span><span><b>الإصدار</b><em>سيُعلن مع النسخة الرسمية</em></span><span><b>الحجم والتاريخ</b><em>لم يُعلن عنهما بعد</em></span></div>
         </section>
